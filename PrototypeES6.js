@@ -1,47 +1,34 @@
 // 2 Užduotis
-const car = {
-    make: 'BMW',
-    model: 'X5',
-    color: 'Black',
-    fuelType: 'Diesel'
-  }
 
   // Car info constructor
   class carInfo{
-      constructor(make, model){
+      constructor(make, model, color, fuelType){
           this.make = make;
           this.model = model;
+          this.color = color;
+          this.fuelType = fuelType;
       }
       getCarInfo(){
-          return this.make, this.model;
+          return {
+              make: this.make,
+              model: this.model,
+          }
+      }
+      getFuelType(){
+        switch(this.fuelType){
+            case 'Diesel':
+                return "Automobilis varomas dyzeliu";
+            case 'Petrol': 
+                return "Automobilis varomas benzinu";
+            case 'Electricity':
+                return "Automobilis varomas elektra";
+            default:
+                return "Tokio kuro tipo nera";
+        }
       }
   }
   
-  // Printing the car make and model
-  const info = new carInfo(car.make, car.model);
-  console.log(info);
 
-// Fuel type constructor
-class getFuel {
-    constructor(fuelType){
-        this.fuelType = fuelType;
-    }
-    getFuelType(){
-        return this.fuelType;
-    }
-}
- 
-const fuelStatus = new getFuel(car.fuelType);
-
-// Checking and printing FuelType
-  switch(fuelStatus.fuelType){
-    case 'Diesel':
-        console.log("Automobilis varomas dyzeliu");
-        break;
-    case 'Petrol':
-        console.log("Automobilis varomas benzinu");
-        break;
-    case 'Electricity':
-        console.log("Automobilis varomas elektra");
-        break;
-  }
+const car = new carInfo('BMW', 'X5', 'Black','Diesel');
+console.log(car.getCarInfo());
+console.log(car.getFuelType());

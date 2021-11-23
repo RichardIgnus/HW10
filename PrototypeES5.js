@@ -1,49 +1,37 @@
 // 1.2
-const car = {
-    make: 'BMW',
-    model: 'X5',
-    color: 'Black',
-    fuelType: 'Diesel',
-    getCarInfo(){
-        return this.make, this.model;
-    },
-    getFuelInfo(){
-        return this.fuelType;
+function carOPP(make, model, color, fuelType){
+    this.make = make;
+    this.model = model;
+    this.color = color;
+    this.fuelType = fuelType;
+}
+
+
+carOPP.prototype.getCarInfo = function(){
+    return {
+        make: this.make,
+        model: this.model
     }
-  }
-
-
-function getCarInfo(make, model){
-    this.make = make;
-    this.model = model;
 }
 
-getCarInfo.prototype = function(make, model){
-    this.make = make;
-    this.model = model;
-}
+const car = new carOPP('BMW', 'X5', 'Black','Diesel');
 
-const info = new getCarInfo(car.make, car.model);
-console.log(info);
+console.log(car.getCarInfo());
 
 // 1.3
-function getFuelInfo(fuelType){
-    this.fuelType = fuelType;
+
+
+carOPP.prototype.fuelStatus = function (){;
+    switch(this.fuelType){
+        case 'Diesel':
+            return "Automobilis varomas dyzeliu";
+        case 'Petrol': 
+            return "Automobilis varomas benzinu";
+        case 'Electricity':
+            return "Automobilis varomas elektra";
+        default:
+            return "Tokio kuro tipo nera"
+    }
 }
 
-getFuelInfo.prototype = function(fuelType){
-    this.fuelType = fuelType;
-}
-
-const fuelStatus = new getFuelInfo(car.fuelType);
-switch(fuelStatus.fuelType){
-    case 'Diesel':
-        console.log("Automobilis varomas dyzeliu");
-        break;
-    case 'Petrol':
-        console.log("Automobilis varomas benzinu");
-        break;
-    case 'Electricity':
-        console.log("Automobilis varomas elektra");
-        break;
-}
+console.log(car.fuelStatus());
